@@ -17,7 +17,7 @@ These are some things that are very possible if Open Email Metadata is adopted t
  * set up complex rules to react to different situations
  * get notified when someone replies to your forum or blog posts
  * receive notifications of what you bought, how much it cost
- * […and much more!](#examples-moreexamples)
+ * […and much more!](#more-examples)
 
 If you operate a service, why should you use OEM?
 
@@ -211,7 +211,7 @@ The clientside framework is a standard application that runs on a user's machine
 
 
 
-# Examples <a id="moreexamples"></a>
+# More Examples
 === 
 
 What possibilities might OEM give rise to?
