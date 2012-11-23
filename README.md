@@ -209,9 +209,9 @@ The clientside framework is a standard application that runs on a user's machine
 	 * Basic OEM utility that checks emails and extracts data and does not integrate with the email client.
 
 
-<a id="moreexamples"></a>
 
-# [Examples](id:moreexamples)
+
+# <a id="moreexamples"></a>Examples [moreexamples] #
 === 
 
 What possibilities might OEM give rise to?
