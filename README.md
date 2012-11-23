@@ -34,8 +34,9 @@ If you operate a service, why should you use OEM?
 Open Email Metadata is conceptually simple. When you create an email with your service, you append one or more attachments that conforms with the following OpenEmailMetadata standards. This ensures that any receipients will be able to interpret the data and act upon it.
 
 
- 1. Metadata is attached as a MIME attachment
- 2. The metadata MUST be attached as application/json.
+ 1. Your email has a `multipart/alternative` part.
+ 2. Metadata is attached as a MIME attachment.
+ 3. The metadata MUST be attached as application/json. (_OEMFormat Identification needs clarifying_)
 
 # OEMFormats
 ===
@@ -45,12 +46,6 @@ The following are some early metadata formats. OEM does not define how the follo
 ### OEM-2: Itemised Receipt
 
 This is a very basic itemised receipt that assumes a fixed currency and tax included per-item.
-
-Considerations:
- * tax
- * item description
-
-
 
 ```
 	{
@@ -63,7 +58,9 @@ Considerations:
 	 total: 308
 	}
 ```
-
+Considerations:
+ * tax
+ * item description
 
 
 ### OEM-3: Expected Delivery Date
@@ -148,21 +145,24 @@ Considerations:
 # Semantic Open Email Metadata
 ===
 
-In the above examples, there is no links between metadata where it would be beneficial for there to be. It is undecided how this could be implemented. There are no standard mechanisms in JSON that support identifiers. There are a number of opportunities available:
+In the above examples, there is no links between metadata where it would be beneficial for there to be. It is undecided how this could be implemented. There are no standard mechanisms in JSON that support linkage between JSON. There are a number of opportunities available:
 
  * Require producers of metadata give a unique identifier (IRI)
  * Use a known attempt at linking JSON metadata [HAL](http://stateless.co/hal_specification.html), [JSON-LD](http://json-ld.org/), [JSON Reference](http://tools.ietf.org/html/draft-pbryan-zyp-json-ref-00)
+
+For example, an Itemised Receipt might want to refer to a Bill and vice versa. An Invitation and Reply may wish to refer to an individual or organisation in a consistent way. This is a case where XML lends itself well such as with Friend of a Friend. (See OEM Serialization)
 
 ### Unanswered Questions
  
  * What if a user has not received an email with an existing ID?
  * Forces a client to keep a record of previous metdata. No longer idempotent.
- * Would they be able to re-fetch it?
+ * Would they be able to re-fetch it? The IRIs could also be re-retrievable but this goes outside the intent of this standard.
 
 
 # Considerations
 ===
- 
+
+### OEM Serialization
 There are hopes to support `application/xml` and `application/x-www-form-urlencoded` but this will have to wait until there is an obvious way to serialiser metadata to all three formats that is not serialiser dependent. For example, there are multiple ways to encode arrays in `application/x-www-form-urlencoded` and conversions between XML and JSON.
 
 ### Versioning
@@ -173,6 +173,10 @@ This remains to be seen.
  * [`Content-Type`](http://www.w3.org/Protocols/rfc1341/4_Content-Type.html) parameters.
  * MIME Custom headers
  * Envelopes
+ 
+### Hiding Attachments from Mail Clients
+
+Clients tend to ignore `multipart/alterantive` emails if they do not support the `Content-Type`. This allows the OEM to be invisible to clients that do not support OEM.
 
 
 # Creating Implementations
@@ -237,3 +241,4 @@ See all your recommendations from different vendors in one place.
 ## SPARQL Querying of Email
 
 Ask your email more meaningful questions.
+
