@@ -1,7 +1,7 @@
 # OpenEmailMetadata
 =================
 
-**Note**: Currently Open Email Metadata is explorative and has no existing implementations.
+**Note**: Currently Open Email Metadata is explorative, incomplete and has no existing implementations.
 
 Send your emails with attached metadata so recipients can create complex behaviours such as displaying notifications, integration and search. Let's make email semantic!
 
@@ -165,6 +165,16 @@ In the above examples, there is no links between metadata where it would be bene
  
 There are hopes to support `application/xml` and `application/x-www-form-urlencoded` but this will have to wait until there is an obvious way to serialiser metadata to all three formats that is not serialiser dependent. For example, there are multiple ways to encode arrays in `application/x-www-form-urlencoded` and conversions between XML and JSON.
 
+### Versioning
+### Identifying the OEMFormat
+
+This remains to be seen.
+
+ * [`Content-Type`](http://www.w3.org/Protocols/rfc1341/4_Content-Type.html) parameters.
+ * MIME Custom headers
+ * Envelopes
+
+
 # Creating Implementations
 ===
 
@@ -173,20 +183,30 @@ You are completely free to use the established formats above in any way you can 
  * node.js: Use [emailjs](https://github.com/eleith/emailjs) to send emails. Use [node-imap](https://github.com/mscdex/node-imap) and [mailparser](https://github.com/andris9/mailparser) to fetch and read emails.
  * php: Use [swiftmailer](http://swiftmailer.org/docs/messages.html) to send OEM. [Horde IMAP](http://wiki.horde.org/Project/HordeImapLib) to read.
 
-# ClientsideFramework
+# Clientside Framework
 ===
 
-The clientside framework is a standard application that runs on a user's machine and handles. This application is extensible and decides what to do with the OEM that is received. This is effectively [`mailcap`](http://en.wikipedia.org/wiki/Mailcap) for OEM.
+The clientside framework is a standard application that runs on a user's machine and handles OEM. This application is extensible and decides what to do with the OEM that is received. This is effectively [`mailcap`](http://en.wikipedia.org/wiki/Mailcap) for OEM.
 
- * Could be hosted in an email client. (_Too client dependent._)
- * Could run as a separate process with a standard API.
-  * Could be web based to take advantage of the web ecosystem. (_Do people want to run a complete web stack?_)
- * A very basic `registry` for each OEM that fires a program up that handles it.
- * Some features make sense in the email client and others in a separate process.
- * Plugins and programs are written to interpret the OEM in different ways. See the examples list.
+ * Plugins and programs are written to interpret the OEM in different ways. (See the [examples](#moreexamples) list.)
   * Some applications might want to send your OEM to third party services, such as a recommendation website that collects your preferences over time. Users decide who to send OEM to.
-  
+
+# Considerations
+
+ * Where do you process OEM?
+ * **Integration with the mail client**
+	 * Could be hosted in and run within the email client. (_Too client dependent._) Thunderbird, Outlook plugins that automatically extract OEM from emails.
+	 * Could run as a separate process with a standard API.
+	 * An application that executes a given program or script for a given OEM. Acts a registry for each OEM handler.
+	 * Some features make sense in the email client and others in a separate process.
+	 * Mail Proxy that intercepts OEM.
+ * **Standalone**
+	 * Could be web based to take advantage of the web ecosystem. (_Do people want to run a complete web stack?_)
+	 * Basic OEM utility that checks emails and extracts data and does not integrate with the email client.
+
+
 <a id="moreexamples"></a>
+
 # [Examples](id:moreexamples)
 === 
 
