@@ -17,7 +17,7 @@ These are some things that are very possible if Open Email Metadata is adopted t
  * set up complex rules to react to different situations
  * get notified when someone replies to your forum or blog posts
  * receive notifications of what you bought, how much it cost
- * […and much more!](#moreexamples)
+ * […and much more!](#examples-moreexamples)
 
 If you operate a service, why should you use OEM?
 
@@ -199,19 +199,19 @@ The clientside framework is a standard application that runs on a user's machine
 
  * Where do you process OEM?
  * **Integration with the mail client**
-	 * Could be hosted in and run within the email client. (_Too client dependent._) Thunderbird, Outlook plugins that automatically extract OEM from emails.
+	 * Could be hosted in and run within the email client. (*Too client dependent.*) Thunderbird, Outlook plugins that automatically extract OEM from emails.
 	 * Could run as a separate process with a standard API.
 	 * An application that executes a given program or script for a given OEM. Acts a registry for each OEM handler.
 	 * Some features make sense in the email client and others in a separate process.
 	 * Mail Proxy that intercepts OEM.
  * **Standalone**
-	 * Could be web based to take advantage of the web ecosystem. (_Do people want to run a complete web stack?_)
+	 * Could be web based to take advantage of the web ecosystem. (*Do people want to run a complete web stack?*)
 	 * Basic OEM utility that checks emails and extracts data and does not integrate with the email client.
 
 
 
 
-# <a id="moreexamples"></a>Examples [moreexamples] #
+# Examples [moreexamples] #
 === 
 
 What possibilities might OEM give rise to?
